@@ -1,7 +1,7 @@
 ﻿#Requires AutoHotkey v2.0
 #SingleInstance
 
-
+SwapChance := 69        ;Change this number to change the percent chance of toggling caps lock
 
 ShiftCount := 0
 SarcActive := 0
@@ -24,7 +24,6 @@ OnRShift() {
         ResetShiftCount()
     }
     
-    ; Loop until RShift is pressed twice again or the counter reaches 50
     While (SarcActive != 0) {       
         KeyWaitAny("V")
         KeyWaitAny(Options:="")
@@ -43,8 +42,8 @@ OnRShift() {
             }
         }
 
-        randomNumber := Random(1, 7)
-        If (randomNumber <= 3)
+        randomNumber := Random(1, 100)
+        If (randomNumber <= SwapChance)
             SetCapsLockState !GetKeyState("CapsLock", "T")
     }
 }
